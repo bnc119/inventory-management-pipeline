@@ -3,7 +3,7 @@
 */ 
 
 pipeline {
-    agent xlarge
+    agent 2xlarge
 
     options {
       timestamps()
