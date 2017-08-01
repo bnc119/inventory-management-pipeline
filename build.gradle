@@ -186,7 +186,7 @@ task getConflicts(type: org._10ne.gradle.rest.RestTask) {
 	def targetURL = findProperty("targetURL")
 
 	httpMethod = 'get'
-	uri = "${targetURL}/api/v1/branches/${branch}/conflicts"
+	uri = "${targetURL}/api/v1/branches/${branch}/conflicts?applicationName=${defaultApplicationName}&applicationVersion=${defaultApplicationVersion}"
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
