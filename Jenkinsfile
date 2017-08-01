@@ -3,7 +3,7 @@
 */ 
 
 pipeline {
-    agent { node { label '2xlarge' } }
+    agent { node { label 'master' } }
 
     options {
       timestamps()
