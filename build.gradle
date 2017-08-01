@@ -191,6 +191,12 @@ task getConflicts(type: org._10ne.gradle.rest.RestTask) {
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
 
+	println "username = ${username}"
+	println "password = ${password}"
+	println "uri = ${uri}"
+	println "branch = ${branch}"
+
+
 	contentType = groovyx.net.http.ContentType.JSON
 	responseHandler = { response ->
 		if (response.conflictsCount as int == 0) {
