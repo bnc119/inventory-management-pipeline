@@ -3,7 +3,7 @@
 */ 
 
 pipeline {
-    agent { node { label 'master' } }
+    agent any
 
     options {
       timestamps()
@@ -12,7 +12,7 @@ pipeline {
         usernamePassword(credentialsId: 'artifactory', 
             passwordVariable: 'ARTIFACTORY_PASSWORD', 
             usernameVariable: 'ARTIFACTORY_USER'),
-        usernamePassword(credentialsId: 'imsadmin', 
+        usernamePassword(credentialsId: 'sitracker_admin', 
             passwordVariable: 'IMS_PASSWORD', 
             usernameVariable: 'IMS_USER')
         ])
