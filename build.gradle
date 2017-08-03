@@ -122,7 +122,6 @@ task fetchFromArtifactory(type: Download) {
 
 }
 
-
 task createRestorePoint(type: org._10ne.gradle.rest.RestTask) {
 	group 'Pega'
 	description 'Create restore point.'
@@ -313,11 +312,11 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 	contentType = groovyx.net.http.ContentType.XML
 
 	responseHandler = { response ->
-		println "Successful test execution. Results are stored at : ${testResultFile.toString()} \n"
+		println "Test execution complete. Results are stored at : ${testResultFile.toString()} \n"
 		if (response != null) {
-			println "Test Results : ${response.toString()}"
+			println "Raw XML Response: ${XmlUtil.serialize(response)}"
+		        testResultFileHandle.write "${XmlUtil.serialize(response)}"
 		}
-		testResultFileHandle.write "${response.toString()}"
 
 		
 		}
