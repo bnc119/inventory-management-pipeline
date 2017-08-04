@@ -116,14 +116,14 @@ task fetchFromArtifactory(type: Download) {
 	group 'Pega'
 	description 'Fetch application archive from artifactory'
 
-  /*
-	println 'Cleaning out import folder' +importFolder
+
+	println 'Bence:  Cleaning out import folder' +importFolder
   File folder = new File(importFolder)
-	folder.eachFileRecurse(groovy.io.FileType.FILES) {
+	folder.eachFileRecurse(FileType.FILES) {
     file ->
         file.delete()
 	}
-	*/
+
 
 	// fetch all files in this folder
 	println "Bence: current files in importfolder:"
