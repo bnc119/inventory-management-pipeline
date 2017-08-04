@@ -1,6 +1,6 @@
-/* 
-* Copyright (c) 2017 and Confidential to Pegasystems Inc. All rights reserved.  
-*/ 
+/*
+* Copyright (c) 2017 and Confidential to Pegasystems Inc. All rights reserved.
+*/
 
 buildscript {
 	repositories {
@@ -113,6 +113,15 @@ artifactory {
 task fetchFromArtifactory(type: Download) {
 	group 'Pega'
 	description 'Fetch application archive from artifactory'
+	println 'Cleaning out import folder' +importFolder
+
+	File folder = new File(importFolder)
+	folder.eachFileRecurse(groovy.io.FileType.FILES) {
+    file ->
+        file.delete()
+} 
+
+
 
 	println 'Downloading artifact from : ' + artifactLocation
 	src artifactLocation
@@ -294,19 +303,19 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 		 testResultFileHandle = new File("${testResultLocation}/${testResultFile}")
 	}
 	else {
-		 testResultFileHandle = new File("${testResultFile}")	
+		 testResultFileHandle = new File("${testResultFile}")
 	}
         println "\nTest result file location - ${testResultFile}"
 
 	uri = "${targetURL}/PRRestService/PegaUnit/Rule-Test-Unit-Case/pzExecuteTests"
 	// Pass in testsutie
 	// requestBody = [TestSuiteID: java.net.URLEncoder.encode(testSuite, "UTF-8")]
-	
+
 	println "Test URI = ${uri}"
 
 	username = findProperty('pegaUsername')
 	password = findProperty('pegaPassword')
-	
+
 
 	httpMethod = 'post'
 	contentType = groovyx.net.http.ContentType.XML
@@ -318,7 +327,7 @@ task executePegaUnitTests(type: org._10ne.gradle.rest.RestTask) {
 		        testResultFileHandle.write "${XmlUtil.serialize(response)}"
 		}
 
-		
+
 		}
 
 	doFirst {
