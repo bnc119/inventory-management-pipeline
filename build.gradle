@@ -135,9 +135,6 @@ task fetchFromArtifactory(type: Download) {
   	println it.path
 	}
 
-}
-
-
 
 	println 'Downloading artifact from : ' + artifactLocation
 	src artifactLocation
