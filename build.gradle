@@ -117,14 +117,6 @@ task fetchFromArtifactory(type: Download) {
 	description 'Fetch application archive from artifactory'
 
 
-	println 'Bence:  Cleaning out import folder' +importFolder
-  File folder = new File(importFolder)
-	folder.eachFileRecurse(FileType.FILES) {
-    file ->
-        file.delete()
-	}
-
-
 	// fetch all files in this folder
 	println "Bence: current files in importfolder:"
 	def list = []
@@ -144,6 +136,15 @@ task fetchFromArtifactory(type: Download) {
 	username artifactoryUser
 	password artifactoryPassword
 	dest importFolder
+
+	doFirst {
+		println 'Bence:  Cleaning out import folder' +importFolder
+	  File folder = new File(importFolder)
+		folder.eachFileRecurse(FileType.FILES) {
+	    file ->
+	        file.delete()
+		}
+	}
 
 }
 
