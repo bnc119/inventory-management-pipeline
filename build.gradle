@@ -113,13 +113,24 @@ artifactory {
 task fetchFromArtifactory(type: Download) {
 	group 'Pega'
 	description 'Fetch application archive from artifactory'
-	println 'Cleaning out import folder' +importFolder
+	//println 'Cleaning out import folder' +importFolder
+  //File folder = new File(importFolder)
+	//folder.eachFileRecurse(groovy.io.FileType.FILES) {
+  //  file ->
+  //      file.delete()
 
-	File folder = new File(importFolder)
-	folder.eachFileRecurse(groovy.io.FileType.FILES) {
-    file ->
-        file.delete()
-} 
+	// fetch all files in this folder
+	def list = []
+	def dir = new File(importFolder)
+	dir.eachFileRecurse (FileType.FILES) { file ->
+	  list << file
+	}
+	// print all files in folder
+	list.each {
+  	println it.path
+	}
+
+}
 
 
 
